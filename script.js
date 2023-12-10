@@ -1,3 +1,19 @@
+// class to make answer object
+class Answer {
+    #name; #imgSrc;
+    constructor(name, imgSrc){
+        this.#name = name;
+        this.#imgSrc = imgSrc;
+    }
+
+    get name(){
+        return this.#name;
+    }
+    get imgSrc(){
+        return this.#imgSrc;
+    }
+}
+
 //styling page
 // temp to see the layout of page
 const img = document.querySelector(".img-area img");
@@ -14,27 +30,44 @@ const answerBank = [
     imgSrc: "./img/diluc.png",
   },
   {
-    name: "kaveh",
-    imgSrc: "./img/kaveh.png",
-  },
-  {
     name: "zhongli",
     imgSrc: "./img/zhongli.png",
   },
   {
-    name: "neuvillette",
-    imgSrc: "./img/neuvillette.png",
-  },
-  {
     name: "raiden shougun",
     imgSrc: "./img/raiden.png"
+  },
+  {
+    name: "kaveh",
+    imgSrc: "./img/kaveh.png",
+  },
+  {
+    name: "neuvillette",
+    imgSrc: "./img/neuvillette.png",
   }
 ];
+
 // store index of random answer
-const index = getRandomIndex(answerBank);
+const questionsIndexes = createQuestionBank(answerBank);
 // store answer
 const answer = answerBank[index].name;
 
+function createQuestionBank (arr, answerBank) {
+    const questionBank = [];
+    while(questionBank.length <5) {
+        const index = getRandomIndex(answerBank);
+        if(!(questionBank.includes(index))){
+            questionBank.push(index);
+        }
+    }
+}
+
+// check if the user is right or wrong
+function checkAnswer(userGuess, answer) {
+    return userGuess.toLowerCase() === answer; 
+}
+
+//gets random index 
 function getRandomIndex(arr) {
   /*Use Math.random() to generate random number (returns a float, aka a number with decimal points)
    * Multiply Math.random() by array's length to pick a number from 0 to array's length-1 (still a float)
