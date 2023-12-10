@@ -1,3 +1,32 @@
+//styling page
+//store answer area section
+
+createAnswerArea();
+
+function createAnswerArea() {
+  const answerArea = document.getElementById("answer-area");
+
+  const div = document.createElement("div");
+  div.classList.add("img-container");
+
+  const frag = document.createDocumentFragment();
+
+  const img = document.createElement("img");
+  changeImgSrc(img, "./img/kaveh.png");
+  div.appendChild(img);
+
+  const p = document.createElement("p");
+  div.appendChild(p);
+
+  frag.appendChild(div);
+
+  answerArea.appendChild(frag);
+}
+
+function changeImgSrc(img, imgSrc) {
+  img.setAttribute("src", imgSrc);
+}
+//game section
 const answerBank = [
   // index: 0
   {
@@ -24,17 +53,15 @@ const answerBank = [
   },
 ];
 // store index of random answer
-const index = getRandomIndex(pokemonList);
+const index = getRandomIndex(answerBank);
 // store answer
-const answer = pokemonList[index].name;
-
-
+const answer = answerBank[index].name;
 
 function getRandomIndex(arr) {
-    /*Use Math.random() to generate random number (returns a float, aka a number with decimal points)
-     * Multiply Math.random() by array's length to pick a number from 0 to array's length-1 (still a float)
-     * Use Math.floor to round it to the nearest whole number
-     * Return that number so we can access a random element in the array.
-     */
-    return Math.floor(Math.random() * arr.length);
-  }
+  /*Use Math.random() to generate random number (returns a float, aka a number with decimal points)
+   * Multiply Math.random() by array's length to pick a number from 0 to array's length-1 (still a float)
+   * Use Math.floor to round it to the nearest whole number
+   * Return that number so we can access a random element in the array.
+   */
+  return Math.floor(Math.random() * arr.length);
+}
