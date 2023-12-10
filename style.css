@@ -3,3 +3,7 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.img-black {
+    filter: contrast(100%) brightness(0%);
+}
