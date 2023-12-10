@@ -24,27 +24,7 @@ function changeImgSrc(img, imgSrc) {
 }
 //game section
 
-const answerBank = [
-  {
-    name: "diluc",
-    imgSrc: "./img/diluc.png",
-  },
-  {
-    name: "zhongli",
-    imgSrc: "./img/zhongli.png",
-  },
-  {
-    name: "raiden shougun",
-    imgSrc: "./img/raiden.png"
-  },
-  {
-    name: "kaveh",
-    imgSrc: "./img/kaveh.png",
-  },
-  {
-    name: "neuvillette",
-    imgSrc: "./img/neuvillette.png",
-  }
+const answerBank = [ new Answer("diluc", "./img/diluc.png"), new Answer("alhaitham", "./img/alhaitham.png"), new Answer(["ayaka", "kamisato"], "./img/ayaka.png"),new Answer(["child", "tartaglia","ajax"],"./img/childe.png"), new Answer(["hutao", "hu", "tao"], "./img/hutao.png"), new Answer("kaveh", "./img/kaveh.png"), new Answer(["kokomi", "sangonomiya"], "./img/kokomi.png"), new Answer("neuvillette", "./img/neuvillette.png"), new Answer(["raiden", "shougun", "shogun", "shoogun", "ei"], "./img/raiden.png"), new Answer("xiao", "./img/xiao.png"), new Answer(["yae", "miko", "yaemiko"], "./img/yaemiko.png"), new Answer(["yoimiya", "naganohara"], "./img/yoimiya.png"), new Answer("zhongli", "./img/zhongli.png")
 ];
 
 // store index of random answer
