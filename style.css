@@ -3,7 +3,20 @@
     justify-content: space-around;
     align-items: center;
 }
-
+/*start of img styling*/
 .img-black {
     filter: contrast(100%) brightness(0%);
+}
+
+.img-container {
+width: 100%;
+}
+
+div > img{
+    width: 100%;
+}
+
+/* end of img styling */
+main section {
+    width: 50vw;
 }
