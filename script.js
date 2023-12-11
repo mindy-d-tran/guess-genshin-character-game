@@ -25,6 +25,9 @@ function changeImgSrc(img, imgSrc) {
 }
 
 //game section
+const answerArea = document.querySelector("#answer-area");
+const answerP = answerArea.lastChild;
+answerP.textContent = "???";
 // some of the names are arrays because the character have multiple names
 const answerBank = [
   new Answer("diluc", "./img/diluc.png"),
@@ -50,6 +53,10 @@ const questionsBank = createQuestionBank(answerBank);
 // store current question;
 let currentQuestion = 0;
 let userScore = 0;
+const testAnswer = "kaveh";
+const form = document.getElementById("user-guess-form");
+const userInput = document.getElementById("user-guess");
+const btn = document.querySelector("button");
 
 // create random questions
 function createQuestionBank(answerBank) {
@@ -68,13 +75,12 @@ function createQuestionBank(answerBank) {
   return questionsBank;
 }
 // check if the user is right or wrong
-function checkAnswer(userGuess, answer, score) {
-   if(userGuess.toLowerCase() === answer){
-    score+=100;
-   } else {
-    score-=50;
-   }
-   return score;
+function checkAnswer(userGuess, answer) {
+  return userGuess.toLowerCase() === answer
+
+}
+function updateUserScore(isUserCorrect){
+    isUserCorrect ? userScore+=100 : userScore-=50;
 }
 //gets random index
 function getRandomIndex(arr) {
@@ -85,3 +91,9 @@ function getRandomIndex(arr) {
    */
   return Math.floor(Math.random() * arr.length);
 }
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  updateUserScore(checkAnswer(userInput.value, testAnswer));
+});
