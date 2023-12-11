@@ -28,18 +28,25 @@ const answerBank = [ new Answer("diluc", "./img/diluc.png"), new Answer("alhaith
 ];
 
 // store index of random answer
-const questionsIndexes = createQuestionBank(answerBank);
+const questionsBank = createQuestionBank(answerBank);
 // store answer
-const answer = answerBank[index].name;
+// const answer = answerBank[index].name;
 
-function createQuestionBank (arr, answerBank) {
-    const questionBank = [];
-    while(questionBank.length <5) {
+// create random questions
+function createQuestionBank (answerBank) {
+    const questionBankIndexes = [];
+    const questionsBank = [];
+    // add random indexes into questionBankIndexes
+    while(questionBankIndexes.length <5) {
         const index = getRandomIndex(answerBank);
-        if(!(questionBank.includes(index))){
-            questionBank.push(index);
+        // checks if arr already contains index (don't want duplicates)
+        if(!(questionBankIndexes.includes(index))){
+            questionBankIndexes.push(index);
         }
     }
+    // add information into questionsBank
+    questionBankIndexes.forEach(index => questionsBank.push(answerBank[index]));
+    return questionsBank;
 }
 
 // check if the user is right or wrong
