@@ -15,19 +15,7 @@ class Answer {
   }
 }
 
-//styling page
-// temp to see the layout of page
-const img = document.querySelector(".img-area img");
-changeImgSrc(img, "./img/kaveh.png");
-
-function changeImgSrc(img, imgSrc) {
-  img.setAttribute("src", imgSrc);
-}
-
 //game section
-const answerArea = document.querySelector("#answer-area");
-const answerP = answerArea.lastChild;
-answerP.textContent = "???";
 // some of the names are arrays because the character have multiple names
 const answerBank = [
   new Answer("diluc", "./img/diluc.png"),
@@ -48,39 +36,61 @@ const answerBank = [
   new Answer("zhongli", "./img/zhongli.png"),
 ];
 
-// store randomly generated question bank
-const questionsBank = createQuestionBank(answerBank);
-// store current question;
-let currentQuestion = 0;
-let userScore = 0;
-const testAnswer = "kaveh";
+// document elements
+const answerArea = document.querySelector("#answer-area");
+// paragraph in answer area
+const answerP = answerArea.lastChild;
+// img in answer area
+const imgDiv = document.querySelector(".img-area");
+
 const form = document.getElementById("user-guess-form");
 const userInput = document.getElementById("user-guess");
 const btn = document.querySelector("button");
 
-// create random questions
-function createQuestionBank(answerBank) {
-  const questionBankIndexes = [];
-  const questionsBank = [];
-  // add random indexes into questionBankIndexes
-  while (questionBankIndexes.length < 5) {
-    const index = getRandomIndex(answerBank);
-    // checks if arr already contains index (don't want duplicates)
-    if (!questionBankIndexes.includes(index)) {
-      questionBankIndexes.push(index);
-    }
-  }
-  // add information into questionsBank
-  questionBankIndexes.forEach((index) => questionsBank.push(answerBank[index]));
-  return questionsBank;
+// store question
+const question = generateQuestion(answerBank);
+
+setUpGame(imgDiv, answerP, question.imgSrc);
+
+function setUpGame (imgDiv, p, imgSrc){ 
+  const imgBlur = document.createElement("img");
+  const imgBlack = document.createElement("img");
+
+  changeImgSrc(imgBlur, imgSrc);
+  changeImgSrc(imgBlack, imgSrc);
+  imgBlur.style.filter = `blur(40px)`;
+  imgBlack.classList.add("img-black");
+  imgDiv.appendChild(imgBlur);
+  imgDiv.appendChild(imgBlack);
+  p.textContent = "???"
 }
+function generateQuestion(arr){
+  const index =  getRandomIndex(arr);
+  return arr[index];
+}
+// // create random questions
+// function createQuestionBank(answerBank) {
+//   const questionBankIndexes = [];
+//   const questionsBank = [];
+//   // add random indexes into questionBankIndexes
+//   while (questionBankIndexes.length < 5) {
+//     const index = getRandomIndex(answerBank);
+//     // checks if arr already contains index (don't want duplicates)
+//     if (!questionBankIndexes.includes(index)) {
+//       questionBankIndexes.push(index);
+//     }
+//   }
+//   // add information into questionsBank
+//   questionBankIndexes.forEach((index) => questionsBank.push(answerBank[index]));
+//   return questionsBank;
+// }
 // check if the user is right or wrong
 function checkAnswer(userGuess, answer) {
-  return userGuess.toLowerCase() === answer
-
+  return userGuess.toLowerCase() === answer;
 }
-function updateUserScore(isUserCorrect){
-    isUserCorrect ? userScore+=100 : userScore-=50;
+// change change img src
+function changeImgSrc(img, imgSrc) {
+  img.setAttribute("src", imgSrc);
 }
 //gets random index
 function getRandomIndex(arr) {
@@ -92,8 +102,8 @@ function getRandomIndex(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 
-form.addEventListener("submit", function(e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  updateUserScore(checkAnswer(userInput.value, testAnswer));
+  checkAnswer(userInput.value, testAnswer);
 });
