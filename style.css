@@ -12,8 +12,10 @@ section[id*="area"] {
   position: relative;
 }
 .img-black {
+  width: 50vw;
   position: absolute;
   top: 0;
+  left: 0;
   filter: contrast(100%) brightness(0%);
   opacity: 50;
 }
