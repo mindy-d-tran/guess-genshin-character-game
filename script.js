@@ -42,9 +42,11 @@ const answerArea = document.querySelector("#answer-area");
 const answerP = answerArea.lastChild;
 // img in answer area
 const imgDiv = document.querySelector(".img-area");
-
+// form
 const form = document.getElementById("user-guess-form");
+// text input
 const userInput = document.getElementById("user-guess");
+// button
 const btn = document.querySelector("button");
 
 // store question
@@ -52,17 +54,20 @@ const question = generateQuestion(answerBank);
 
 setUpGame(imgDiv, answerP, question.imgSrc);
 
+// function to set up game
 function setUpGame (imgDiv, p, imgSrc){ 
+  p.textContent = "???"
   const imgBlur = document.createElement("img");
   const imgBlack = document.createElement("img");
-
-  changeImgSrc(imgBlur, imgSrc);
-  changeImgSrc(imgBlack, imgSrc);
+  // set img src of image
+  imgBlur.setAttribute("src", imgSrc);
+  imgBlack.setAttribute("src", imgSrc);
+  //set style of images
   imgBlur.style.filter = `blur(40px)`;
   imgBlack.classList.add("img-black");
+  //append img to div
   imgDiv.appendChild(imgBlur);
   imgDiv.appendChild(imgBlack);
-  p.textContent = "???"
 }
 function generateQuestion(arr){
   const index =  getRandomIndex(arr);
