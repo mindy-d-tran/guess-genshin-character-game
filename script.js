@@ -70,7 +70,7 @@ function setUpGame (imgDiv, p, imgSrc){
   imgDiv.appendChild(imgBlack);
 }
 function generateQuestion(arr){
-  const index =  getRandomIndex(arr);
+  const index = getRandomIndex(arr);
   return arr[index];
 }
 // // create random questions
@@ -93,10 +93,6 @@ function generateQuestion(arr){
 function checkAnswer(userGuess, answer) {
   return userGuess.toLowerCase() === answer;
 }
-// change change img src
-function changeImgSrc(img, imgSrc) {
-  img.setAttribute("src", imgSrc);
-}
 //gets random index
 function getRandomIndex(arr) {
   /*Use Math.random() to generate random number (returns a float, aka a number with decimal points)
@@ -110,5 +106,7 @@ function getRandomIndex(arr) {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  checkAnswer(userInput.value, testAnswer);
+  if(checkAnswer(userInput.value, testAnswer)) {
+    
+  }
 });
