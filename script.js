@@ -18,28 +18,28 @@ class Answer {
 //game section
 // some of the names are arrays because the character have multiple names
 const answerBank = [
-  new Answer("diluc", "./img/diluc.png"),
-  new Answer("alhaitham", "./img/alhaitham.png"),
-  new Answer(["ayaka", "kamisato"], "./img/ayaka.png"),
-  new Answer(["child", "tartaglia", "ajax"], "./img/childe.png"),
-  new Answer(["hutao", "hu", "tao"], "./img/hutao.png"),
-  new Answer("kaveh", "./img/kaveh.png"),
-  new Answer(["kokomi", "sangonomiya"], "./img/kokomi.png"),
-  new Answer("neuvillette", "./img/neuvillette.png"),
+  new Answer(["Diluc"], "./img/diluc.png"),
+  new Answer(["Alhaitham"], "./img/alhaitham.png"),
+  new Answer(["Ayaka", "Kamisato"], "./img/ayaka.png"),
+  new Answer(["Childe", "Tartaglia", "Ajax"], "./img/childe.png"),
+  new Answer(["Hu", "Tao", "HuTao"], "./img/hutao.png"),
+  new Answer("Kaveh", "./img/kaveh.png"),
+  new Answer(["Kokomi", "Sangonomiya"], "./img/kokomi.png"),
+  new Answer(["Neuvillette"], "./img/neuvillette.png"),
   new Answer(
-    ["raiden", "shougun", "shogun", "shoogun", "ei"],
+    ["Raiden", "Shougun", "Shogun", "Shoogun", "Ei"],
     "./img/raiden.png"
   ),
-  new Answer("xiao", "./img/xiao.png"),
-  new Answer(["yae", "miko", "yaemiko"], "./img/yaemiko.png"),
-  new Answer(["yoimiya", "naganohara"], "./img/yoimiya.png"),
-  new Answer("zhongli", "./img/zhongli.png"),
+  new Answer(["Xiao"], "./img/xiao.png"),
+  new Answer(["Yae", "Miko", "yaemiko"], "./img/yaemiko.png"),
+  new Answer(["Yoimiya", "Naganohara"], "./img/yoimiya.png"),
+  new Answer(["Zhongli"], "./img/zhongli.png"),
 ];
 
 // document elements
 const answerArea = document.querySelector("#answer-area");
 // paragraph in answer area
-const answerP = answerArea.lastChild;
+const answerH2 = answerArea.lastChild;
 // img in answer area
 const imgDiv = document.querySelector(".img-area");
 // form
@@ -52,11 +52,11 @@ const btn = document.querySelector("button");
 // store question
 const question = generateQuestion(answerBank);
 
-setUpGame(imgDiv, answerP, question.imgSrc);
+setUpGame(imgDiv, answerH2, question.imgSrc);
 
 // function to set up game
-function setUpGame (imgDiv, p, imgSrc){ 
-  p.textContent = "???"
+function setUpGame (imgDiv, answerText, imgSrc){ 
+  answerText.textContent = "???"
   const imgBlur = document.createElement("img");
   const imgBlack = document.createElement("img");
   // set img src of image
@@ -70,7 +70,9 @@ function setUpGame (imgDiv, p, imgSrc){
   imgDiv.appendChild(imgBlack);
 }
 function generateQuestion(arr){
-  const index = getRandomIndex(arr);
+  // store random index
+  const index = Math.floor(Math.random() * arr.length);
+  // return object in array;
   return arr[index];
 }
 // // create random questions
@@ -91,22 +93,30 @@ function generateQuestion(arr){
 // }
 // check if the user is right or wrong
 function checkAnswer(userGuess, answer) {
-  return userGuess.toLowerCase() === answer;
+  return answer.toLowerCase().includes(userGuess.toLowerCase());
 }
-//gets random index
-function getRandomIndex(arr) {
-  /*Use Math.random() to generate random number (returns a float, aka a number with decimal points)
-   * Multiply Math.random() by array's length to pick a number from 0 to array's length-1 (still a float)
-   * Use Math.floor to round it to the nearest whole number
-   * Return that number so we can access a random element in the array.
-   */
-  return Math.floor(Math.random() * arr.length);
+function displayName(answerText, answer){
+  if(answer.length > 1){
+    answerText.textContent = answer[0];
+  } else{
+    const [first, last] = [answer[0], answer[1]];
+    answer.answerText = `${first} ${last}`;
+  }
 }
+//show if the user won 
+function showResults(result){
+  const h2 = document.createElement("h2");
+  if(result){
+    h2.textContent = "You won!! Play again?";
+  } else {
+    h2.textContent = "You lost!! Play again?";
+  }
+  displayName(answerH2, question);
+  return h2;
 
+}
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-
-  if(checkAnswer(userInput.value, testAnswer)) {
-    
-  }
+  const isUserRight = checkAnswer(userInput.value, question.name);
+  form.prepend(showResults(isUserRight));
 });
