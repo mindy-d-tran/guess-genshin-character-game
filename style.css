@@ -1,7 +1,7 @@
 /* start of general styling */
 * {
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0;
   padding: 0;
   color: #856240;
@@ -32,7 +32,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 3em;
+  /* flex-wrap: wrap; */
+  column-gap: 2em;
 }
 .column-flex {
   flex-direction: column;
@@ -40,6 +41,9 @@ main {
   align-items: center;
 }
 /* start of styling sections */
+main > div {
+width: 60%;
+}
 main section {
   background-color:  #EBE4DC;
   padding: 1em;
@@ -47,8 +51,7 @@ main section {
 /* start of question area */
 #question-area {
   width: 60%;
-  /* padding: 1em;
-  background-color:  #EBE4DC; */
+  box-shadow: #d1c7bf 3px -3px 10px 2px;
 }
 #title-area{
   width: 100%;
@@ -83,21 +86,37 @@ button {
 
 /* end of question area */
 /* start of answer area */
-#answer-area {
+#answer-area, #back-card {
   width: 40%;
-  padding: 0.5em 1em;
+  padding: 1em;
+}
+#answer-area {
+  background-color: #F5F1EB;
+  box-shadow: #d1c7bf 3px -3px 10px;
+}
+#back-card {
+  background-color: #EBE4DC;
+  width: 324px;
+  height: 393px;
+  rotate: 10deg;
+  position: absolute;
+  box-shadow: #d1c7bf 3px -3px 10px;
+  z-index: -1;
+}
+#answer-area >h2 {
+  margin: 0.25em;
 }
 /*start of img styling*/
 .img-area {
   position: relative;
-  width: 25vw;
-  height: 25vw;
+  width: 20vw;
+  height: 20vw;
   padding: 0.5em 1em;
   border: 2px solid #e5d9c2;
 }
 .img-area img {
-  height: 90%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 img:last-child {
