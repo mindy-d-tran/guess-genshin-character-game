@@ -10,20 +10,20 @@
   <body>
     <main class="container" id="game-app">
       <div class="container">
-        <section class="container column-flex" id="answer-area">
+        <section class="container column-flex" id="question-area">
           <div class="img-area"></div>
           <div id="back-card"></div>
           <h2></h2>
         </section>
   
-        <section class="container column-flex" id="question-area">
+        <section class="container column-flex" id="answer-area">
           <div class="container column-flex" id="title-area">
             <h1>Who's that Character</h1>
             <p class="subtitle">Genshin Edition</p>
           </div>
           <div class="line"></div>
           <form class="container column-flex" id="user-guess-form">
-            <input type="text" name="user-guess" id="user-guess" />
+            <input type="text" name="user-guess" id="user-guess" pattern="\w"/>
             <button type="submit">submit</button>
           </form>
         </section>

@@ -36,9 +36,9 @@ const answerBank = [
 ];
 
 // document elements
-const answerArea = document.querySelector("#answer-area");
+const questionArea = document.querySelector("#question-area");
 // paragraph in answer area
-const answerH2 = answerArea.querySelector("h2");
+const answerH2 = questionArea.querySelector("h2");
 // img in answer area
 const imgDiv = document.querySelector(".img-area");
 // form

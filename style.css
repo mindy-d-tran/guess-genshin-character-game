@@ -55,7 +55,7 @@ main section {
   padding: 1em;
 }
 /* start of question area */
-#question-area {
+#answer-area {
   width: 60%;
   box-shadow: #d1c7bf 3px -3px 10px 2px;
 }
@@ -91,11 +91,11 @@ button {
 
 /* end of question area */
 /* start of answer area */
-#answer-area, #back-card {
+#question-area, #back-card {
   width: 40%;
   padding: 1em;
 }
-#answer-area {
+#question-area {
   background-color: #F5F1EB;
   box-shadow: #d1c7bf 3px -3px 10px;
 }
@@ -108,7 +108,7 @@ button {
   box-shadow: #d1c7bf 3px -3px 10px;
   z-index: -1;
 }
-#answer-area >h2 {
+#question-area >h2 {
   margin: 0.25em;
 }
 /*start of img styling*/
