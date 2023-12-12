@@ -49,8 +49,8 @@ const userInput = document.getElementById("user-guess");
 const btn = document.querySelector("button");
 
 // store question
-const question = answerBank[2];
-// const question = generateQuestion(answerBank);
+// const question = answerBank[8];
+const question = generateQuestion(answerBank);
 let isClick = false;
 
 setUpGame(imgDiv, answerH2, question.imgSrc);
@@ -129,6 +129,7 @@ function showResults(result) {
   }
   return h2;
 }
+
 // show replay button
 function displayReplayBtn (element) {
   // create new button tag
