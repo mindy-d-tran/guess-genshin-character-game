@@ -37,9 +37,9 @@ const answerBank = [
 
 // document elements
 const questionArea = document.querySelector("#question-area");
-// paragraph in answer area
+// paragraph in question area
 const answerH2 = questionArea.querySelector("h2");
-// img in answer area
+// img in queestion area
 const imgDiv = document.querySelector(".img-area");
 // form
 const form = document.getElementById("user-guess-form");
