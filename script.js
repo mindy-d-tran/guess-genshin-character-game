@@ -49,8 +49,9 @@ const userInput = document.getElementById("user-guess");
 const btn = document.querySelector("button");
 
 // store question
-const question = answerBank[3];
+const question = answerBank[2];
 // const question = generateQuestion(answerBank);
+let isClick = false;
 
 setUpGame(imgDiv, answerH2, question.imgSrc);
 
@@ -92,11 +93,15 @@ function generateQuestion(arr) {
 //   return questionsBank;
 // }
 // check if the user is right or wrong
-function checkAnswer(userGuess, answer, imgDiv) {
-  return answer.includes(userGuess.toLowerCase());
+function checkAnswer(userGuess, answer) {
+  if(userGuess.includes(" ")){
+    let guess = userGuess.split(" ");
+    return answer.includes(guess[0].toLowerCase());
+  } else{
+    return answer.includes(userGuess.toLowerCase());
+  }
 }
 function displayAnswer(answerText, answer) {
-  console.log(answer.length);
   if (answer.length >1 && !answer.includes("childe")) {
     answerText.textContent = `${capitalizeName(answer[0])} ${capitalizeName(answer[1])}`;
   } else if(answer.length >1 && answer.includes("childe")){
@@ -127,5 +132,8 @@ form.addEventListener("submit", function (e) {
   e.preventDefault();
   const isUserRight = checkAnswer(userInput.value, question.name);
   displayAnswer(answerH2, question.name, imgDiv);
-  form.prepend(showResults(isUserRight));
+  if(!isClick){
+    form.prepend(showResults(isUserRight));
+    isClick = true;
+  }
 });
