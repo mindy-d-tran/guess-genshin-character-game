@@ -46,7 +46,7 @@ main section {
 }
 /* start of question area */
 #question-area {
-  width: 75%;
+  width: 60%;
   /* padding: 1em;
   background-color:  #EBE4DC; */
 }
@@ -58,7 +58,7 @@ main section {
   border: 2px solid #E0D6CA;
 }
 form {
-  height: 50%;
+  height: 60%;
   width: 100%;
   padding: 1em;
   background-color: #F5F1EB;
@@ -84,18 +84,20 @@ button {
 /* end of question area */
 /* start of answer area */
 #answer-area {
-  width: 25vw;
+  width: 40%;
+  padding: 0.5em 1em;
 }
 /*start of img styling*/
 .img-area {
   position: relative;
   width: 25vw;
   height: 25vw;
+  padding: 0.5em 1em;
   border: 2px solid #e5d9c2;
 }
 .img-area img {
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 90%;
   object-fit: cover;
 }
 img:last-child {
