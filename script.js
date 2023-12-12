@@ -18,22 +18,22 @@ class Answer {
 //game section
 // some of the names are arrays because the character have multiple names
 const answerBank = [
-  new Answer(["Diluc"], "./img/diluc.png"),
-  new Answer(["Alhaitham"], "./img/alhaitham.png"),
-  new Answer(["Ayaka", "Kamisato"], "./img/ayaka.png"),
-  new Answer(["Childe", "Tartaglia", "Ajax"], "./img/childe.png"),
-  new Answer(["Hu", "Tao", "HuTao"], "./img/hutao.png"),
-  new Answer("Kaveh", "./img/kaveh.png"),
-  new Answer(["Kokomi", "Sangonomiya"], "./img/kokomi.png"),
-  new Answer(["Neuvillette"], "./img/neuvillette.png"),
+  new Answer(["diluc"], "./img/diluc.png"),
+  new Answer(["alhaitham"], "./img/alhaitham.png"),
+  new Answer(["ayaka", "kamisato"], "./img/ayaka.png"),
+  new Answer(["childe", "tartaglia", "ajax"], "./img/childe.png"),
+  new Answer(["hu", "tao", "hutao"], "./img/hutao.png"),
+  new Answer(["kaveh"], "./img/kaveh.png"),
+  new Answer(["kokomi", "sangonomiya"], "./img/kokomi.png"),
+  new Answer(["neuvillette"], "./img/neuvillette.png"),
   new Answer(
-    ["Raiden", "Shougun", "Shogun", "Shoogun", "Ei"],
+    ["raiden", "shougun", "shogun", "shoogun", "ei"],
     "./img/raiden.png"
   ),
-  new Answer(["Xiao"], "./img/xiao.png"),
-  new Answer(["Yae", "Miko", "yaemiko"], "./img/yaemiko.png"),
-  new Answer(["Yoimiya", "Naganohara"], "./img/yoimiya.png"),
-  new Answer(["Zhongli"], "./img/zhongli.png"),
+  new Answer(["xiao"], "./img/xiao.png"),
+  new Answer(["yae", "miko", "yaemiko"], "./img/yaemiko.png"),
+  new Answer(["yoimiya", "naganohara"], "./img/yoimiya.png"),
+  new Answer(["zhongli"], "./img/zhongli.png"),
 ];
 
 // document elements
@@ -93,14 +93,14 @@ function generateQuestion(arr){
 // }
 // check if the user is right or wrong
 function checkAnswer(userGuess, answer) {
-  return answer.toLowerCase().includes(userGuess.toLowerCase());
+  return answer.includes(userGuess.toLowerCase());
 }
 function displayName(answerText, answer){
   if(answer.length > 1){
     answerText.textContent = answer[0];
   } else{
     const [first, last] = [answer[0], answer[1]];
-    answer.answerText = `${first} ${last}`;
+    answer.textContent = `${first} ${last}`;
   }
 }
 //show if the user won 
