@@ -4,17 +4,17 @@
   overflow: hidden;
   margin: 0;
   padding: 0;
-  color: #4B5266;
+  color: #856240;
 }
 body {
-  background-color: #B2B2B2;
+  background-color: #b2b2b2;
   background-image: url(https://cdnb.artstation.com/p/assets/images/images/035/118/345/large/woojin-lee-08.jpg?1614148112);
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 42% 50%;
 }
 h1 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 h2 {
   font-size: 2em;
@@ -24,19 +24,21 @@ main {
   height: 100vh;
 }
 /* end of general styling */
-#answer-area {
-  border: 2px solid #e5d9c2;
-}
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 3em;
 }
 .column-flex {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
+#question-area {
+  margin-left: 5%;
+}
+
 /*start of img styling*/
 .img-area {
   position: relative;
@@ -72,7 +74,7 @@ img:last-child {
 
 /* end of img styling */
 main section {
-  width: 28vw;
+  width: 25vw;
   height: 80vh;
 }
 form {
@@ -84,9 +86,11 @@ form {
 
 /* start of button style */
 button {
-  padding: 0.5em;
+  padding: 0.5em 1em;
   font-size: 1em;
-  background-color: #cca574;
+  background-color: #b75a49;
   border: none;
+  color: #edf5ee;
+  border-radius: 25px;
 }
 /* end of button style */
