@@ -58,16 +58,13 @@ setUpGame(imgDiv, answerH2, question.imgSrc);
 // function to set up game
 function setUpGame(imgDiv, answerText, imgSrc) {
   answerText.textContent = "???";
-  const imgBlur = document.createElement("img");
+
   const imgBlack = document.createElement("img");
   // set img src of image
-  imgBlur.setAttribute("src", imgSrc);
   imgBlack.setAttribute("src", imgSrc);
   //set style of images
-  imgBlur.style.filter = `blur(40px)`;
   imgBlack.classList.add("img-black");
   //append img to div
-  imgDiv.appendChild(imgBlur);
   imgDiv.appendChild(imgBlack);
 }
 function generateQuestion(arr) {
