@@ -6,7 +6,6 @@ class Answer {
     this.#name = name;
     this.#imgSrc = imgSrc;
   }
-
   get name() {
     return this.#name;
   }
@@ -39,7 +38,7 @@ const answerBank = [
 // document elements
 const answerArea = document.querySelector("#answer-area");
 // paragraph in answer area
-const answerH2 = answerArea.lastChild;
+const answerH2 = answerArea.querySelector("h2");
 // img in answer area
 const imgDiv = document.querySelector(".img-area");
 // form
@@ -50,13 +49,14 @@ const userInput = document.getElementById("user-guess");
 const btn = document.querySelector("button");
 
 // store question
-const question = generateQuestion(answerBank);
+const question = answerBank[2];
+// const question = generateQuestion(answerBank);
 
 setUpGame(imgDiv, answerH2, question.imgSrc);
 
 // function to set up game
-function setUpGame (imgDiv, answerText, imgSrc){ 
-  answerText.textContent = "???"
+function setUpGame(imgDiv, answerText, imgSrc) {
+  answerText.textContent = "???";
   const imgBlur = document.createElement("img");
   const imgBlack = document.createElement("img");
   // set img src of image
@@ -69,7 +69,7 @@ function setUpGame (imgDiv, answerText, imgSrc){
   imgDiv.appendChild(imgBlur);
   imgDiv.appendChild(imgBlack);
 }
-function generateQuestion(arr){
+function generateQuestion(arr) {
   // store random index
   const index = Math.floor(Math.random() * arr.length);
   // return object in array;
@@ -95,28 +95,26 @@ function generateQuestion(arr){
 function checkAnswer(userGuess, answer) {
   return answer.includes(userGuess.toLowerCase());
 }
-function displayName(answerText, answer){
-  if(answer.length > 1){
+function displayName(answerText, answer) {
+  if (answer.length > 1) {
     answerText.textContent = answer[0];
-  } else{
-    const [first, last] = [answer[0], answer[1]];
-    answer.textContent = `${first} ${last}`;
+  } else {
+    answerText.textContent = `${answer[0]} ${answer[1]}`;
   }
 }
-//show if the user won 
-function showResults(result){
+//show if the user won
+function showResults(result) {
   const h2 = document.createElement("h2");
-  if(result){
+  if (result) {
     h2.textContent = "You won!! Play again?";
   } else {
     h2.textContent = "You lost!! Play again?";
   }
-  displayName(answerH2, question);
   return h2;
-
 }
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const isUserRight = checkAnswer(userInput.value, question.name);
+  displayName(answerH2, question.name);
   form.prepend(showResults(isUserRight));
 });
