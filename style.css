@@ -20,7 +20,7 @@ img:last-child {
 .img-normal {
   filter: brightness(100%);
   opacity: 1;
-  transition: all 1s ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 .img-black {
   filter: brightness(0%);
