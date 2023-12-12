@@ -94,29 +94,30 @@ function generateQuestion(arr) {
 // }
 // check if the user is right or wrong
 function checkAnswer(userGuess, answer) {
-  if(userGuess.includes(" ")){
+  if (userGuess.includes(" ")) {
     let guess = userGuess.split(" ");
     return answer.includes(guess[0].toLowerCase());
-  } else{
+  } else {
     return answer.includes(userGuess.toLowerCase());
   }
 }
 function displayAnswer(answerText, answer) {
-  if (answer.length >1 && !answer.includes("childe")) {
-    answerText.textContent = `${capitalizeName(answer[0])} ${capitalizeName(answer[1])}`;
-  } else if(answer.length >1 && answer.includes("childe")){
+  if (answer.length > 1 && !answer.includes("childe")) {
+    answerText.textContent = `${capitalizeName(answer[0])} ${capitalizeName(
+      answer[1]
+    )}`;
+  } else if (answer.length > 1 && answer.includes("childe")) {
     answerText.textContent = capitalizeName(answer[1]);
   } else {
     answerText.textContent = capitalizeName(answer[0]);
   }
   imgDiv.lastChild.classList.replace("img-black", "img-normal");
-
 }
 // make name capitalized
-function capitalizeName(name){
+function capitalizeName(name) {
   const firstLetter = name[0].toUpperCase();
   const remainingLetters = name.slice(1);
-  return firstLetter+remainingLetters;
+  return firstLetter + remainingLetters;
 }
 //show if the user won
 function showResults(result) {
@@ -128,12 +129,26 @@ function showResults(result) {
   }
   return h2;
 }
+// show replay button
+function displayReplayBtn (element) {
+  // create new button tag
+  const btn = document.createElement("button");
+  // add text in button tag
+  btn.textContent = "Play Again";
+  // add attribute to button to refresh page 
+  // code from https://www.freecodecamp.org/news/javascript-refresh-page-how-to-reload-a-page-in-js/
+  btn.setAttribute("onclick", "location.reload()");
+  // add button inside the element you passed
+  element.appendChild(btn);
+}
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const isUserRight = checkAnswer(userInput.value, question.name);
   displayAnswer(answerH2, question.name, imgDiv);
-  if(!isClick){
+  if (!isClick) {
     form.prepend(showResults(isUserRight));
     isClick = true;
+    displayReplayBtn(form);
   }
 });
