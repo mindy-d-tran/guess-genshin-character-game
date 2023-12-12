@@ -96,11 +96,18 @@ function checkAnswer(userGuess, answer) {
   return answer.includes(userGuess.toLowerCase());
 }
 function displayName(answerText, answer) {
-  if (answer.length > 1) {
-    answerText.textContent = answer[0];
+  console.log(answer.length);
+  if (answer.length >1) {
+    answerText.textContent = `${capitalizeName(answer[0])} ${capitalizeName(answer[1])}`;
   } else {
-    answerText.textContent = `${answer[0]} ${answer[1]}`;
+    answerText.textContent = capitalizeName(answer[0]);
   }
+}
+// make name capitalized
+function capitalizeName(name){
+  const firstLetter = name[0].toUpperCase();
+  const remainingLetters = name.slice(1);
+  return firstLetter+remainingLetters;
 }
 //show if the user won
 function showResults(result) {
