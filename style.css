@@ -11,13 +11,20 @@ section[id*="area"] {
 #img-area {
   position: relative;
 }
-.img-black {
+img:last-child {
   width: 50vw;
   position: absolute;
   top: 0;
   left: 0;
-  filter: contrast(100%) brightness(0%);
-  opacity: 50;
+}
+.img-normal {
+  filter: brightness(100%);
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+.img-black {
+  filter: brightness(0%);
+  opacity: 0.9;
 }
 
 .img-container {

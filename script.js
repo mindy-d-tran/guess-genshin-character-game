@@ -49,7 +49,7 @@ const userInput = document.getElementById("user-guess");
 const btn = document.querySelector("button");
 
 // store question
-const question = answerBank[2];
+const question = answerBank[3];
 // const question = generateQuestion(answerBank);
 
 setUpGame(imgDiv, answerH2, question.imgSrc);
@@ -95,10 +95,12 @@ function generateQuestion(arr) {
 function checkAnswer(userGuess, answer) {
   return answer.includes(userGuess.toLowerCase());
 }
-function displayName(answerText, answer) {
+function displayName(answerText, answer, userAnswer) {
   console.log(answer.length);
-  if (answer.length >1) {
+  if (answer.length >1 && !answer.includes("childe")) {
     answerText.textContent = `${capitalizeName(answer[0])} ${capitalizeName(answer[1])}`;
+  } else if(answer.length >1 && answer.includes("childe")){
+    answerText.textContent = capitalizeName(answer[2]);
   } else {
     answerText.textContent = capitalizeName(answer[0]);
   }
@@ -122,6 +124,6 @@ function showResults(result) {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const isUserRight = checkAnswer(userInput.value, question.name);
-  displayName(answerH2, question.name);
+  displayName(answerH2, question.name, userInput.value);
   form.prepend(showResults(isUserRight));
 });
