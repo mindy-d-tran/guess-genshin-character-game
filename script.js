@@ -2,9 +2,11 @@
 class Answer {
   #name;
   #imgSrc;
-  constructor(name, imgSrc) {
+  #audioSrc;
+  constructor(name, imgSrc, audioSrc) {
     this.#name = name;
     this.#imgSrc = imgSrc;
+    this.#audioSrc = audioSrc;
   }
   get name() {
     return this.#name;
@@ -12,27 +14,30 @@ class Answer {
   get imgSrc() {
     return this.#imgSrc;
   }
+  get audioSrc(){
+    return this.#audioSrc;
+  }
 }
 
 //game section
 // some of the names are arrays because the character have multiple names
 const answerBank = [
-  new Answer(["diluc"], "./img/diluc.png"),
-  new Answer(["alhaitham"], "./img/alhaitham.png"),
-  new Answer(["ayaka", "kamisato"], "./img/ayaka.png"),
-  new Answer(["childe", "tartaglia", "ajax"], "./img/childe.png"),
-  new Answer(["hu", "tao", "hutao"], "./img/hutao.png"),
-  new Answer(["kaveh"], "./img/kaveh.png"),
-  new Answer(["kokomi", "sangonomiya"], "./img/kokomi.png"),
-  new Answer(["neuvillette"], "./img/neuvillette.png"),
+  new Answer(["diluc"], "./img/diluc.png", "https://static.wikia.nocookie.net/gensin-impact/images/6/63/VO_Diluc_Hello.ogg/"),
+  new Answer(["alhaitham"], "./img/alhaitham.png", "https://static.wikia.nocookie.net/gensin-impact/images/a/a3/VO_Alhaitham_Hello.ogg"),
+  new Answer(["ayaka", "kamisato"], "./img/ayaka.png", "https://static.wikia.nocookie.net/gensin-impact/images/b/b8/VO_Kamisato_Ayaka_Hello.ogg"),
+  new Answer(["childe", "tartaglia", "ajax"], "./img/childe.png", "https://static.wikia.nocookie.net/gensin-impact/images/0/0d/VO_Tartaglia_Hello.ogg/"),
+  new Answer(["hu", "tao", "hutao"], "./img/hutao.png", "https://static.wikia.nocookie.net/gensin-impact/images/2/28/VO_Hu_Tao_Hello.ogg"),
+  new Answer(["kaveh"], "./img/kaveh.png", "https://static.wikia.nocookie.net/gensin-impact/images/1/1f/VO_Kaveh_Hello.ogg/"),
+  new Answer(["kokomi", "sangonomiya"], "./img/kokomi.png", "https://static.wikia.nocookie.net/gensin-impact/images/8/8e/VO_Sangonomiya_Kokomi_Hello.ogg"),
+  new Answer(["neuvillette"], "./img/neuvillette.png", "https://static.wikia.nocookie.net/gensin-impact/images/5/53/VO_Neuvillette_Hello.ogg"),
   new Answer(
     ["raiden", "shougun", "shogun", "shoogun", "ei"],
-    "./img/raiden.png"
+    "./img/raiden.png", "https://static.wikia.nocookie.net/gensin-impact/images/9/9a/VO_Raiden_Shogun_Hello.ogg/"
   ),
-  new Answer(["xiao"], "./img/xiao.png"),
-  new Answer(["yae", "miko", "yaemiko"], "./img/yaemiko.png"),
-  new Answer(["yoimiya", "naganohara"], "./img/yoimiya.png"),
-  new Answer(["zhongli"], "./img/zhongli.png"),
+  new Answer(["xiao"], "./img/xiao.png", "https://static.wikia.nocookie.net/gensin-impact/images/f/ff/VO_Xiao_Hello.ogg/"),
+  new Answer(["yae", "miko", "yaemiko"], "./img/yaemiko.png", "https://static.wikia.nocookie.net/gensin-impact/images/0/08/VO_Yae_Miko_Hello.ogg/"),
+  new Answer(["yoimiya", "naganohara"], "./img/yoimiya.png", "https://static.wikia.nocookie.net/gensin-impact/images/b/b2/VO_Yoimiya_Hello.ogg/"),
+  new Answer(["zhongli"], "./img/zhongli.png", "https://static.wikia.nocookie.net/gensin-impact/images/7/7b/VO_Zhongli_Hello.ogg/"),
 ];
 
 // document elements
@@ -124,22 +129,29 @@ function showResults(result) {
   } else {
     h2.textContent = "You lost!! Play again?";
   }
+  playAudio();
   return h2;
 }
 
 // show replay button
-function displayReplayBtn (element) {
+function displayReplayBtn(element) {
   // create new button tag
   const btn = document.createElement("button");
   // add text in button tag
   btn.textContent = "Play Again";
-  // add attribute to button to refresh page 
+  // add attribute to button to refresh page
   // code from https://www.freecodecamp.org/news/javascript-refresh-page-how-to-reload-a-page-in-js/
   btn.setAttribute("onclick", "location.reload()");
   // add button inside the element you passed
   element.appendChild(btn);
 }
 
+function playAudio(audioSrc) {
+  // have to use sound constructor to play sound (the easy way)
+  // got it from this https://noaheakin.medium.com/adding-sound-to-your-js-web-app-f6a0ca728984
+  let mySound = new Audio(audioSrc);
+  return mySound;
+}
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const isUserRight = checkAnswer(userInput.value, question.name);
@@ -148,5 +160,6 @@ form.addEventListener("submit", function (e) {
     form.prepend(showResults(isUserRight));
     isClick = true;
     displayReplayBtn(form);
+    playAudio(question.audioSrc).play();
   }
 });
